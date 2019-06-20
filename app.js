@@ -26,7 +26,7 @@ var h_ = 1;
 var width = 120;
 
 //Number of blades
-var instances = 50000;
+var instances = 20000;
 if(mobile){
 	instances = 10000;
 	width = 50;
@@ -159,7 +159,7 @@ void main() {
   frc = position.y/float(` + h_ + `);
 
   //Get wind data from simplex noise 
-  float noise = 1.0-(snoise(vec2((time-offset.x/50.0), (time-offset.z/50.0)))); 
+  float noise = -1.0-(snoise(vec2((time-offset.x/50.0), (time-offset.z/50.0)))); 
 
   //Define the direction of an unbent blade of grass rotated around the Y axis
   vec4 direction = vec4(0.0, halfRootAngleSin, 0.0, halfRootAngleCos);
@@ -329,8 +329,8 @@ instanced_geometry.addAttribute( 'halfRootAngleCos', halfRootAngleCosAttribute);
 //Get alpha map and blade texture
 //These have been taken from "Realistic real-time grass rendering" by Eddie Lee, 2010
 THREE.ImageUtils.crossOrigin = '';
-var texture = THREE.ImageUtils.loadTexture("https://res.cloudinary.com/al-ro/image/upload/v1552838655/v2_iqvzcx.png");
-var alphaMap = THREE.ImageUtils.loadTexture("https://res.cloudinary.com/al-ro/image/upload/v1552834315/Screen_Shot_2019-03-17_at_15.50.35_y5zfyu.png");
+var texture = THREE.ImageUtils.loadTexture("./resources/grass_texture.png");
+var alphaMap = THREE.ImageUtils.loadTexture("./resources/grass_alpha.png");
 
 //Define the material, specifying attributes, uniforms, shaders etc.
 var material = new THREE.RawShaderMaterial( {
